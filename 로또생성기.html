@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>로또 번호 생성기</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .lotto-container {
+      text-align: center;
+      margin: 50px auto;
+    }
+    .lotto-ball {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #f9a825;
+      color: #fff;
+      font-size: 20px;
+      line-height: 40px;
+      margin: 5px;
+    }
+    .generate-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">로또 번호 생성기</h1>
+  <div class="lotto-container">
+    <div class="lotto-ball">-</div>
+    <div class="lotto-ball">-</div>
+    <div class="lotto-ball">-</div>
+    <div class="lotto-ball">-</div>
+    <div class="lotto-ball">-</div>
+    <div class="lotto-ball">-</div>
+  </div>
+  <div class="lotto-container">
+    <button class="generate-button" onclick="generateLottoNumbers()">로또 번호 생성</button>
+  </div>
+
+  <script>
+    function generateLottoNumbers() {
+      const lottoBalls = document.querySelectorAll(".lotto-ball");
+      const numbers = Array.from({ length: 45 }, (_, i) => i + 1);
+      const selectedNumbers = [];
+
+      for (let i = 0; i < 6; i++) {
+        const randomIndex = Math.floor(Math.random() * numbers.length);
+        const randomNumber = numbers.splice(randomIndex, 1)[0];
+        selectedNumbers.push(randomNumber);
+      }
+
+      selectedNumbers.sort((a, b) => a - b);
+
+      for (let i = 0; i < 6; i++) {
+        lottoBalls[i].innerText = selectedNumbers[i];
+      }
+    }
+  </script>
+</body>
+</html>
